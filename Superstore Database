@@ -1,0 +1,15 @@
+#For this project, I used SQL to query the Superstore database to get information about items sold at the store and their prices. 
+
+#For this project, I used SQL to query the Superstore database to get information about items sold at the store and their prices. 
+Select price
+from superstore;
+
+#Show a statistic about the item prices.
+Select sum (price)
+from superstore;
+
+#Show a statistic about the price for items in the category of "Kitchen Supplies". 
+Select item_name, sum (price)
+from superstore
+group by item_name
+order by item_name;
