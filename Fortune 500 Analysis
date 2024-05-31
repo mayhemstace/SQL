@@ -1,0 +1,23 @@
+#Down below, I was asked to check on revenue, maternity leave, and whether or not the prespective companies had healthcare benefits
+
+select *
+from fortune_companies;
+
+select company_id, company_name, industry, revenue,
+case
+when revenue>300 then 'High Revenue'
+when revenue>=200 then 'Medium Revenue'
+else 'Low Revenue'
+End as Measured_Revenue
+From fortune_companies
+Order by measured_revenue asc;
+
+select company_name, sum(revenue) as total_revenue
+from fortune_companies
+where company_name= 'Apple Inc.'
+group by company_name
+having total_revenue> 150;
+
+Select company_name, maternity_leave_weeks, healthcare_benefits
+from fortune_companies
+where maternity_leave_weeks>8 and healthcare_benefits=1;
