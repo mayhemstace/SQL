@@ -1,23 +1,21 @@
-#Down below, I was asked to check on revenue, maternity leave, and whether or not the prespective companies had healthcare benefits
-
+--#take a peek at the data you will be reviewing
 select *
 from fortune_companies;
 
-select company_id, company_name, industry, revenue,
-case
-when revenue>300 then 'High Revenue'
-when revenue>=200 then 'Medium Revenue'
-else 'Low Revenue'
-End as Measured_Revenue
-From fortune_companies
-Order by measured_revenue asc;
-
-select company_name, sum(revenue) as total_revenue
+#In this data set, I was able to differentiate what company fit into the created column of "High-Low Revenue"
+select company_name, revenue,
+case when revenue>= 500 then 'High Revenue'
+when revenue<= 499 then 'Lower Revenue'
+end as 'High-Low Revenue'
 from fortune_companies
-where company_name= 'Apple Inc.'
-group by company_name
-having total_revenue> 150;
+group by revenue;
 
-Select company_name, maternity_leave_weeks, healthcare_benefits
+#This dataset provided the knowledge of companies that paid any away time for employees
+select company_name, industry, paid_time_off_days, maternity_leave_weeks
 from fortune_companies
-where maternity_leave_weeks>8 and healthcare_benefits=1;
+where paid_time_off_days>= 10
+or maternity_leave_weeks>= 8;
+
+#this dataset provided the company with the minimum average tenure
+select company_name, min(avg_employee_tenure)
+from fortune_companies;
