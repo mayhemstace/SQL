@@ -1,0 +1,17 @@
+-- #Here, I was asked to retrieve data from 4 different tables. That data retrieved was the name of the course, the name of the textbook, and the name of the author from an EDTech company.
+
+
+Select CourseName, Title, Name
+from Courses as c
+Inner Join Textbooks as t
+On c.CourseID= t.CourseID
+
+left join AuthorTextbookLink as ATL
+on t.TextbookID= ATL.TextbookID
+
+left join Author
+on Author.AuthorID= ATL.AuthorID
+
+Where Subject= 'Economics'
+and Current= 'Yes'
+Order By Name;
